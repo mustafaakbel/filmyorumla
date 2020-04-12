@@ -552,7 +552,7 @@
 		</div>
 		<div class="ft-copyright">
 			<div class="backtotop">
-				<p><a href="#" id="back-to-top">Back to top  <i class="ion-ios-arrow-thin-up"></i></a></p>
+				<p><a href="#" id="back-to-top">Başa dön   <i class="ion-ios-arrow-thin-up"></i></a></p>
 			</div>
 		</div>
 	</div>
