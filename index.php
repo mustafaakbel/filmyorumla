@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+	include("dbconnect.php");
+?>
 <!--[if IE 7]>
 <html class="ie ie7 no-js" lang="en-US">
 <![endif]-->
@@ -70,7 +73,7 @@
     <div class="login-content">
         <a href="#" class="close">x</a>
         <h3>kayit ol</h3>
-        <form method="post" action="#">
+        <form method="post" action="user-record.php">
             <div class="row">
                  <label for="username-2">
                     kullanıcı adı:
@@ -81,7 +84,7 @@
             <div class="row">
                 <label for="email-2">
                     mail:
-                    <input type="password" name="email" id="email-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                    <input type="email" name="email" id="email-2" placeholder="Mail giriniz" required="required" />
                 </label>
             </div>
              <div class="row">
