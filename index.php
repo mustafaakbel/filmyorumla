@@ -30,7 +30,7 @@
 	<!-- CSS files -->
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
-
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 </head>
 <body>
 <!--preloading-->
@@ -62,7 +62,7 @@
                 </label>
             </div>
            <div class="row">
-           	 <button type="submit">giriş</button>
+           	 <button id="girisButton" type="submit">giriş</button>
            </div>
         </form>
     </div>
@@ -70,14 +70,16 @@
 <!--end of login form popup-->
 <!--signup form popup-->
 <div class="login-wrapper"  id="signup-content">
+	
+
     <div class="login-content">
         <a href="#" class="close">x</a>
         <h3>kayit ol</h3>
-        <form method="post" action="user-record.php">
+        <form>
             <div class="row">
                  <label for="username-2">
                     kullanıcı adı:
-                    <input type="text" name="username" id="username-2" placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
+                    <input type="text" name="username" id="username-2" placeholder="Hugh Jackman"  required="required" />
                 </label>
             </div>
            
@@ -90,17 +92,19 @@
              <div class="row">
                 <label for="password-2">
                     şifre:
-                    <input type="password" name="password" id="password-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+						<!-- pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" -->
+                    <input type="password" name="password" id="password-2" placeholder=""  required="required" />
                 </label>
             </div>
              <div class="row">
                 <label for="repassword-2">
                     şifre onayla:
-                    <input type="password" name="password" id="repassword-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+						<!-- pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" -->
+                    <input type="password" name="password2" id="repassword-2" placeholder=""  required="required" />
                 </label>
             </div>
            <div class="row">
-             <button type="submit">kayit ol</button>
+             <button id="kayitButton">kayit ol</button>
            </div>
         </form>
     </div>
@@ -558,12 +562,32 @@
 	</div>
 </footer>
 <!-- end of footer v2 section-->
-
 <script src="js/jquery.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/plugins2.js"></script>
 <script src="js/custom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 </body>
 
+<script>
+	$("#kayitButton").click(function(){
+		var username = $("#username-2").val();
+		var email = $("#email-2").val();
+		var password = $("#password-2").val();
+		var repassword = $("#repassword-2").val();
+		$.post("user-record.php",
+		{
+			username: username,
+			email:email,
+			password:password,
+			repassword:repassword
+
+		}, function(data, status){
+			alert("Data: " + data + "\nStatus: " + status);
+		});
+
+	});
+</script>
 <!-- homev2_light16:30-->
 </html>
