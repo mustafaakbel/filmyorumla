@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 	include("dbconnect.php");
+	session_start();
 ?>
 <!--[if IE 7]>
 <html class="ie ie7 no-js" lang="en-US">
@@ -144,10 +145,23 @@
 							</ul>
 						</li>
 					</ul>
+					<?php if(@$_SESSION["oturum"] !== TRUE){?>
 					<ul class="nav navbar-nav flex-child-menu menu-right">
 						<li class="loginLink"><a href="#">Giriş</a></li>
 						<li class="btn signupLink"><a href="#">Kayıt Ol</a></li>
 					</ul>
+					<?php	}else{ ?>
+						<ul class="nav navbar-nav flex-child-menu menu-right">
+						<li class="dropdown first">
+							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
+							<?php echo $_SESSION["username"] ?><i class="fa fa-angle-down" aria-hidden="true"></i>
+							</a>
+							<ul class="dropdown-menu level1">	
+								<li onclick="cikisYap()"><a href="#">Çıkış</a></li>
+							</ul>
+						</li>
+					</ul>
+					<?php }?>
 				</div>
 			<!-- /.navbar-collapse -->
 	    </nav>
@@ -569,22 +583,40 @@
 </body>
 
 <script>
+	function cikisYap(){
+		<?php session_destroy(); ?>
+		location.href = 'index.php';
+	}
+
 	$("#kayitButton").click(function(){
 		var username = $("#username-2").val();
 		var email = $("#email-2").val();
 		var password = $("#password-2").val();
 		var repassword = $("#repassword-2").val();
-		$.post("user-record.php",
-		{
-			username: username,
-			email:email,
-			password:password,
-			repassword:repassword
-
-		}, function(data, status){
-			alert("Data: " + data + "\nStatus: " + status);
-		});
-
+		$.ajax({
+           type: "POST",
+		   url: "user-record.php",
+		   data : {username:username,email:email,password:password,repassword:repassword},
+           success: function(data)
+           {
+			   if(data == "OK"){
+					Swal.fire({
+						icon: 'success',
+						title: 'Kayıt başarılı',
+						showConfirmButton: false,
+						timer: 1500
+						})
+						location.reload();
+			   }else{
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: data,
+					})
+			   }
+           }
+		 });
+		return false;
 	});
 </script>
 <!-- homev2_light16:30-->
