@@ -63,7 +63,7 @@
                 </label>
             </div>
            <div class="row">
-           	 <button id="girisButton" type="submit">giriş</button>
+		   		<button id="girisButton">giriş</button>
            </div>
         </form>
     </div>
@@ -587,7 +587,34 @@
 		<?php session_destroy(); ?>
 		location.href = 'index.php';
 	}
-
+	$("#girisButton").click(function(){
+		var username = $("#username").val();
+		var password = $("#password").val();
+		$.ajax({
+           type: "POST",
+		   url: "login.php",
+		   data : {username:username,password:password},
+           success: function(data)
+           {
+			   if(data == "OK"){
+					Swal.fire({
+						icon: 'success',
+						title: 'Giriş başarılı',
+						showConfirmButton: false,
+						timer: 1500
+						})
+						location.reload();
+			   }else{
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: data,
+					})
+			   }
+           }
+		 });
+		return false;
+	});
 	$("#kayitButton").click(function(){
 		var username = $("#username-2").val();
 		var email = $("#email-2").val();
