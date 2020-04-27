@@ -32,6 +32,8 @@
 	<link rel="stylesheet" href="css/plugins.css">
 	<link rel="stylesheet" href="css/style.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+	
+
 </head>
 <body>
 <!--preloading-->
@@ -44,127 +46,11 @@
 </div>
 <!--end of preloading-->
 <!--login form popup-->
-<div class="login-wrapper" id="login-content">
-    <div class="login-content">
-        <a href="#" class="close">x</a>
-        <h3>giriş</h3>
-        <form method="post" action="#">
-        	<div class="row">
-        		 <label for="username">
-                    Kullanıcı Adı:
-                    <input type="text" name="username" id="username" placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
-                </label>
-        	</div>
-           
-            <div class="row">
-            	<label for="password">
-                    Şifre:
-                    <input type="password" name="password" id="password" placeholder="******" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
-                </label>
-            </div>
-           <div class="row">
-		   		<button id="girisButton">giriş</button>
-           </div>
-        </form>
-    </div>
-</div>
-<!--end of login form popup-->
-<!--signup form popup-->
-<div class="login-wrapper"  id="signup-content">
-	
-
-    <div class="login-content">
-        <a href="#" class="close">x</a>
-        <h3>kayit ol</h3>
-        <form>
-            <div class="row">
-                 <label for="username-2">
-                    kullanıcı adı:
-                    <input type="text" name="username" id="username-2" placeholder="Hugh Jackman"  required="required" />
-                </label>
-            </div>
-           
-            <div class="row">
-                <label for="email-2">
-                    mail:
-                    <input type="email" name="email" id="email-2" placeholder="Mail giriniz" required="required" />
-                </label>
-            </div>
-             <div class="row">
-                <label for="password-2">
-                    şifre:
-						<!-- pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" -->
-                    <input type="password" name="password" id="password-2" placeholder=""  required="required" />
-                </label>
-            </div>
-             <div class="row">
-                <label for="repassword-2">
-                    şifre onayla:
-						<!-- pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" -->
-                    <input type="password" name="password2" id="repassword-2" placeholder=""  required="required" />
-                </label>
-            </div>
-           <div class="row">
-             <button id="kayitButton">kayit ol</button>
-           </div>
-        </form>
-    </div>
-</div>
-<!--end of signup form popup-->
-
+<?php include("inc/login_signup.php"); ?>
 <!-- BEGIN | Header -->
 <header class="ht-header full-width-hd" id="header-light">
 		<div class="row">
-			<nav id="mainNav" class="navbar navbar-default navbar-custom">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				
-				<div class="navbar-header logo">
-				    <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					    <span class="sr-only">Toggle navigation</span>
-					    <div id="nav-icon1">
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
-				    </div>
-				    <a href="index_light.html"><img class="logo" src="images/logo1.png" alt="" width="119" height="58"></a>
-			    </div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav flex-child-menu menu-left">
-						<li class="hidden">
-							<a href="#page-top"></a>
-						</li>
-						<li><a href="#">Anasayfa</a></li>
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							filmler<i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">	
-								<li><a href="moviegrid_light.html">Tüm Filmler</a></li>
-							</ul>
-						</li>
-					</ul>
-					<?php if(@$_SESSION["oturum"] !== TRUE){?>
-					<ul class="nav navbar-nav flex-child-menu menu-right">
-						<li class="loginLink"><a href="#">Giriş</a></li>
-						<li class="btn signupLink"><a href="#">Kayıt Ol</a></li>
-					</ul>
-					<?php	}else{ ?>
-						<ul class="nav navbar-nav flex-child-menu menu-right">
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
-							<?php echo $_SESSION["username"] ?><i class="fa fa-angle-down" aria-hidden="true"></i>
-							</a>
-							<ul class="dropdown-menu level1">	
-								<li onclick="cikisYap()"><a href="#">Çıkış</a></li>
-							</ul>
-						</li>
-					</ul>
-					<?php }?>
-				</div>
-			<!-- /.navbar-collapse -->
-	    </nav>
+			<?php include("inc/navmenu.php"); ?>
 	    <!-- search form -->
 		</div>
 	
@@ -288,7 +174,7 @@
 				            				<img src="images/uploads/mv-it1.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Interstellar</a></h6>
@@ -302,7 +188,7 @@
 				            				<img src="images/uploads/mv-it2.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">The revenant</a></h6>
@@ -316,7 +202,7 @@
 				            				<img src="images/uploads/mv-it3.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -330,7 +216,7 @@
 				            				<img src="images/uploads/mv-it4.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">The walk</a></h6>
@@ -344,7 +230,7 @@
 				            				<img src="images/uploads/mv-it5.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -358,7 +244,7 @@
 				            				<img src="images/uploads/mv-it6.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Interstellar</a></h6>
@@ -372,7 +258,7 @@
 				            				<img src="images/uploads/mv-it7.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -386,7 +272,7 @@
 				            				<img src="images/uploads/mv-it8.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -413,7 +299,7 @@
 				            				<img src="images/uploads/mv-it7.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Interstellar</a></h6>
@@ -427,7 +313,7 @@
 				            				<img src="images/uploads/mv-it8.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">The revenant</a></h6>
@@ -441,7 +327,7 @@
 				            				<img src="images/uploads/mv-it9.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -455,7 +341,7 @@
 				            				<img src="images/uploads/mv-it4.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">The walk</a></h6>
@@ -469,7 +355,7 @@
 				            				<img src="images/uploads/mv-it5.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -483,7 +369,7 @@
 				            				<img src="images/uploads/mv-it6.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Interstellar</a></h6>
@@ -497,7 +383,7 @@
 				            				<img src="images/uploads/mv-it7.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -511,7 +397,7 @@
 				            				<img src="images/uploads/mv-it8.jpg" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="moviesingle_light.php"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -578,73 +464,13 @@
 <script src="js/plugins.js"></script>
 <script src="js/plugins2.js"></script>
 <script src="js/custom.js"></script>
+<script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 </body>
 
-<script>
-	function cikisYap(){
-		<?php session_destroy(); ?>
-		location.href = 'index.php';
-	}
-	$("#girisButton").click(function(){
-		var username = $("#username").val();
-		var password = $("#password").val();
-		$.ajax({
-           type: "POST",
-		   url: "login.php",
-		   data : {username:username,password:password},
-           success: function(data)
-           {
-			   if(data == "OK"){
-					Swal.fire({
-						icon: 'success',
-						title: 'Giriş başarılı',
-						showConfirmButton: false,
-						timer: 1500
-						})
-						location.reload();
-			   }else{
-					Swal.fire({
-						icon: 'error',
-						title: 'Oops...',
-						text: data,
-					})
-			   }
-           }
-		 });
-		return false;
-	});
-	$("#kayitButton").click(function(){
-		var username = $("#username-2").val();
-		var email = $("#email-2").val();
-		var password = $("#password-2").val();
-		var repassword = $("#repassword-2").val();
-		$.ajax({
-           type: "POST",
-		   url: "user-record.php",
-		   data : {username:username,email:email,password:password,repassword:repassword},
-           success: function(data)
-           {
-			   if(data == "OK"){
-					Swal.fire({
-						icon: 'success',
-						title: 'Kayıt başarılı',
-						showConfirmButton: false,
-						timer: 1500
-						})
-						location.reload();
-			   }else{
-					Swal.fire({
-						icon: 'error',
-						title: 'Oops...',
-						text: data,
-					})
-			   }
-           }
-		 });
-		return false;
-	});
-</script>
 <!-- homev2_light16:30-->
+<script type="text/javascript">
+	
+</script>
 </html>
