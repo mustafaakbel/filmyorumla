@@ -11,6 +11,37 @@ function cikisYap(){
         }
         });
 }
+
+$("#yorum_yap").click(function(){
+    var baslik_yorum = $("#baslik_yorum").val();
+    var yorum_puan = $("#yorum_puan").val();
+    var yorum = $("#yorum").val();
+    var film_id = $("#film_id").val();
+    $.ajax({
+       type: "POST",
+       url: "comment.php",
+       data : {baslik_yorum:baslik_yorum,yorum_puan:yorum_puan,yorum:yorum,film_id:film_id},
+       success: function(data)
+       {
+           if(data == "OK"){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Yorum yapıldı',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+                    location.reload();
+           }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: data,
+                })
+           }
+       }
+     });
+    return false;
+});
 $("#girisButton").click(function(){
     var username = $("#username").val();
     var password = $("#password").val();

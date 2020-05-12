@@ -168,6 +168,25 @@
 			        <div id="tab1-h2" class="tab active">
 			            <div class="row">
 			            	<div class="slick-multiItem2">
+								<?php
+									$getFilms = $conn->query("SELECT * FROM film");
+									while ($row = mysqli_fetch_assoc($getFilms)) {   ?>
+			            				<div class="slide-it">
+											<div class="movie-item">
+												<div class="mv-img">
+													<img src="<?php echo $row["gorsel"]; ?>" alt="">
+												</div>
+												<div class="hvr-inner">
+													<a  href="moviesingle_light.php?film_id=<?php echo $row['id'] ?>"> Daha Fazla <i class="ion-android-arrow-dropright"></i> </a>
+												</div>
+												<div class="title-in">
+													<h6><a href="#"><?php echo $row["name"]; ?></a></h6>
+													<p><i class="ion-android-star"></i><span><?php echo $row["puan"]; ?></span> /10</p>
+												</div>
+											</div>
+										</div>
+								<?php } ?>
+
 			            		<div class="slide-it">
 			            			<div class="movie-item">
 				            			<div class="mv-img">
