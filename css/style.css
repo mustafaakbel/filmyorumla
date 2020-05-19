@@ -5167,7 +5167,6 @@ ul {
   font-size: 14px;
   color: #abb7c4;
   font-weight: 300;
-  text-transform: capitalize;
 }
 .sidebar .sb-tags .tag-items a:hover {
   color: #dcf836;
@@ -5501,7 +5500,6 @@ ul {
   font-size: 14px;
   color: #ffffff;
   font-weight: bold;
-  text-transform: capitalize;
 }
 .blog-detail-ct .cmt-item h6 a:hover {
   color: #dcf836;
@@ -6353,7 +6351,6 @@ ul {
   font-size: 14px;
   color: #abb7c4;
   font-weight: bold;
-  text-transform: capitalize;
   margin-bottom: 10px;
 }
 .movie-single .sb-it p.tags a {
@@ -6972,7 +6969,6 @@ p.ceb-single {
   font-size: 14px;
   color: #222222;
   font-weight: bold;
-  text-transform: capitalize;
   margin-top: 10px;
   height: 42px;
   border: 1px solid #e1e1e1;
@@ -6980,9 +6976,8 @@ p.ceb-single {
 .overlay .login-content label input::-webkit-input-placeholder {
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
-  color: #222222;
+  color: #abb7c4;
   font-weight: bold;
-  text-transform: capitalize;
 }
 .overlay .login-content button {
   font-family: 'Dosis', sans-serif;
@@ -7771,7 +7766,6 @@ p.ceb-single {
 .buster-light .userrate .mv-item-infor .sm-text {
   background-color: #e4eaf0;
   color: #020d18;
-  text-transform: capitalize;
 }
 .buster-light .userrate .mv-item-infor h6 {
   color: #020d18;
@@ -8180,7 +8174,6 @@ footer .flex-parent-ft .flex-child-ft h4 {
   font-size: 18px;
   color: #ffffff;
   font-weight: bold;
-  text-transform: capitalize;
   margin-bottom: 30px;
 }
 footer .flex-parent-ft .flex-child-ft ul {

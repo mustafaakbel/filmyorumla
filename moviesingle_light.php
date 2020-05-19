@@ -26,7 +26,7 @@
 	<link rel="profile" href="#">
 
     <!--Google Font-->
-    <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+	<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
 	<!-- Mobile specific meta -->
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="format-detection" content="telephone-no">
@@ -89,8 +89,18 @@
 			<div class="col-md-8 col-sm-12 col-xs-12">
 				<div class="movie-single-ct main-content">
 					<h1 class="bd-hd"><?php echo $film["name"] ?> <span><?php echo explode(".",$film["cikis_tarih"])[2] ?></span></h1>
-					<div class="social-btn">
-						<a href="#" class="parent-btn"><i class="ion-heart"></i> Favorilere Ekle</a>	
+					<?php 
+						$favCheck = $conn->query("SELECT * FROM favori_filmler WHERE film_id='".$film_id."' && username='".$_SESSION['username']."' ");
+					?>
+					<div class="social-btn" >
+						<a  href="#" onclick="fav(<?php if(mysqli_num_rows($favCheck) > 0){echo '1'; }else{ echo '0'; }  ?>)" class="parent-btn"><i class="ion-heart"></i>
+						<?php
+						if(mysqli_num_rows($favCheck) > 0){
+							echo "Favorilerden Çıkar";
+						}else{
+							echo "Favorilere Ekle";
+						}
+						?></a>	
 					</div>
 					<div class="movie-rate">
 						<div class="rate">
@@ -292,24 +302,6 @@
 												<p> <?php echo $row["yorum"] ?></p>
 											</div>
 										<?php	} ?>
-										
-										<div class="topbar-filter">
-											<label>Reviews per page:</label>
-											<select>
-												<option value="range">5 Reviews</option>
-												<option value="saab">10 Reviews</option>
-											</select>
-											<div class="pagination2">
-												<span>Page 1 of 6:</span>
-												<a class="active" href="#">1</a>
-												<a href="#">2</a>
-												<a href="#">3</a>
-												<a href="#">4</a>
-												<a href="#">5</a>
-												<a href="#">6</a>
-												<a href="#"><i class="ion-arrow-right-b"></i></a>
-											</div>
-										</div>
 										<div class="col-md-9 col-sm-12 col-xs-12">
 											<div class="blog-detail-ct">
 												<div class="comment-form">
@@ -412,6 +404,43 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 </body>
-
+<script type="text/javascript">
+function fav(status) {
+	var film_id = "<?php echo  $film_id ?>";
+	var username = "<?php echo  $_SESSION['username'] ?>";
+	$.ajax({
+       type: "POST",
+       url: "fav.php",
+       data : {film_id:film_id,username:username,status:status},
+       success: function(data)
+       {
+           if(data == "OK"){
+			   if(status == "1"){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Favorilerden Çıkarıldı',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+			   }else{
+				Swal.fire({
+                    icon: 'success',
+                    title: 'Favorilere Eklendi',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+			   }
+                    location.reload();
+           }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: data,
+                })
+           }
+       }
+	});
+}
+</script>
 <!-- moviesingle_light16:30-->
 </html>

@@ -10,7 +10,7 @@
 							<span></span>
 						</div>
 				    </div>
-				    <a href="index_light.html"><img class="logo" src="images/logo1.png" alt="" width="119" height="58"></a>
+				    <a href="index.php"><img class="logo" src="images/logo1.png" alt="" width="119" height="58"></a>
 			    </div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -18,7 +18,7 @@
 						<li class="hidden">
 							<a href="#page-top"></a>
 						</li>
-						<li><a href="#">Anasayfa</a></li>
+						<li><a href="index.php">Anasayfa</a></li>
 						<li class="dropdown first">
 							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
 							filmler<i class="fa fa-angle-down" aria-hidden="true"></i>
@@ -40,11 +40,11 @@
 							<?php echo $_SESSION["username"] ?><i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">	
+								<li><a href="userprofile_light.php?username=<?php echo $_SESSION['username'] ?>">Profil</a></li>
 								<li onclick="cikisYap()"><a href="#">Çıkış</a></li>
 							</ul>
 						</li>
 					</ul>
 					<?php }?>
 				</div>
-			<!-- /.navbar-collapse -->
 	    </nav>

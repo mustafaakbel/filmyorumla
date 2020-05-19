@@ -1,3 +1,5 @@
+
+
 function cikisYap(){
     $.ajax({
         type: "GET",
@@ -100,3 +102,40 @@ $("#kayitButton").click(function(){
      });
     return false;
 });
+
+function fav(status) {
+	var film_id = "<?php echo  $film_id ?>";
+	var username = "<?php echo  $_SESSION['username'] ?>";
+	$.ajax({
+       type: "POST",
+       url: "fav.php",
+       data : {film_id:film_id,username:username,status:status},
+       success: function(data)
+       {
+           if(data == "OK"){
+			   if(status == "1"){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Favorilerden Çıkarıldı',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+			   }else{
+				Swal.fire({
+                    icon: 'success',
+                    title: 'Favorilere Eklendi',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+			   }
+                    location.reload();
+           }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: data,
+                })
+           }
+       }
+	});
+}
