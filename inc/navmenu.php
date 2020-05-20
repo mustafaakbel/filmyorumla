@@ -1,6 +1,6 @@
 <nav id="mainNav" class="navbar navbar-default navbar-custom">
 				<!-- Brand and toggle get grouped for better mobile display -->
-				
+
 				<div class="navbar-header logo">
 				    <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					    <span class="sr-only">Toggle navigation</span>
@@ -23,13 +23,14 @@
 							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
 							filmler<i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
-							<ul class="dropdown-menu level1">	
+							<ul class="dropdown-menu level1">
 								<li><a href="moviegrid_light.html">Tüm Filmler</a></li>
 							</ul>
 						</li>
 					</ul>
 					<?php if(@$_SESSION["oturum"] !== TRUE){?>
 					<ul class="nav navbar-nav flex-child-menu menu-right">
+						<li class="loginTest"><a href="#" onclick="alertFunc()">Test</a></li>
 						<li class="loginLink"><a href="#">Giriş</a></li>
 						<li class="btn signupLink"><a href="#">Kayıt Ol</a></li>
 					</ul>
@@ -39,7 +40,7 @@
 							<a class="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown">
 							<?php echo $_SESSION["username"] ?><i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
-							<ul class="dropdown-menu level1">	
+							<ul class="dropdown-menu level1">
 								<li><a href="userprofile_light.php?username=<?php echo $_SESSION['username'] ?>">Profil</a></li>
 								<li onclick="cikisYap()"><a href="#">Çıkış</a></li>
 							</ul>
