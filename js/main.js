@@ -1,4 +1,6 @@
-
+function alertFunc() {
+    alert('Heyyo');
+}
 
 function cikisYap(){
     $.ajax({
