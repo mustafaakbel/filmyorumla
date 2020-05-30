@@ -17,7 +17,7 @@
 <!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html lang="en" class="no-js">
 
-<!-- userprofile_light16:31-->
+<!-- userrate_light16:31-->
 <head>
 	<!-- Basic need -->
 	<title>Open Pediatrics</title>
@@ -48,13 +48,12 @@
     </div>
 </div>
 <!--end of preloading-->
-<!--signup form popup-->
 <?php include("inc/login_signup.php"); ?>
 <!--end of signup form popup-->
 
 <!-- BEGIN | Header -->
 <header class="ht-header">
-	<div class="container">		
+	<div class="container">
 		<?php include("inc/navmenu.php"); ?>
 	</div>
 </header>
@@ -65,10 +64,10 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="hero-ct">
-					<h1 style="text-align:left;margin-left:25%;"><?php echo $_GET["username"] ?> profil</h1>
+					<h1>Edward kennedy’s profile</h1>
 					<ul class="breadcumb">
-						<li class="active"><a href="index.php">Anasayfa</a></li>
-						<li> <span class="ion-ios-arrow-right"></span>Profil</li>
+						<li class="active"><a href="#">Home</a></li>
+						<li> <span class="ion-ios-arrow-right"></span>Rated movies</li>
 					</ul>
 				</div>
 			</div>
@@ -78,7 +77,7 @@
 		<div class="buster-light">
 <div class="page-single">
 	<div class="container">
-		<div class="row ipad-width">
+		<div class="row ipad-width2">
 			<div class="col-md-3 col-sm-12 col-xs-12">
 				<div class="user-information">
 					<div class="user-img">
@@ -88,9 +87,9 @@
 					<div class="user-fav">
 						<p>Kullanıcı Detayları</p>
 						<ul>
-							<li  class="active"><a href="userprofile.html">Profil</a></li>
+							<li ><a href="userprofile.html">Profil</a></li>
 							<li><a href="userfavoritegrid_light.php?username=<?php echo $_SESSION['username'] ?>">Favori Filmler</a></li>
-							<li><a href="userrate_light.php?username=<?php echo $_SESSION['username'] ?>">Yorumladığı Filmler</a></li>
+							<li  class="active"><a href="userrate_light.php">Yorumladığı Filmler</a></li>
 							<?php if($user["moderator"]){?>
 								<li><a href="addfilm.php">Film Ekle</a></li>
 							<?php
@@ -107,63 +106,31 @@
 				</div>
 			</div>
 			<div class="col-md-9 col-sm-12 col-xs-12">
-				<div class="form-style-1 user-pro" action="#">
-					<form action="#" class="user">
-						<h4>01. Profil Detayları</h4>
-						<div class="row">
-							<div class="col-md-6 form-it">
-								<label>Kullanıcı Adı</label>
-								<input disabled type="text" id="profil_username" value="<?php echo $user["username"] ?> ">
-							</div>
-							<div class="col-md-6 form-it">
-								<label>Email</label>
-								<input type="text" id="profil_mail" value="<?php echo $user["email"] ?>">
-								<input type="hidden" id="profil_mail_old" value="<?php echo $user["email"] ?>">
-							</div>
+			<?php
+				$getComments= $conn->query("SELECT users.username,comments.yorum_puan,
+				 comments.baslik_yorum,comments.yorum,comments.tarih,film.gorsel,film.name,film.id
+				 FROM comments 
+				 INNER JOIN users ON users.username=comments.username
+				 INNER JOIN film ON comments.film_id=film.id
+				 WHERE comments.username='".$_SESSION['username']."'");
+				while ($row = mysqli_fetch_assoc($getComments)) {  ?>
+					<div class="movie-item-style-2 userrate">
+						<img src="<?php echo $row["gorsel"] ?>" alt="">
+						<div class="mv-item-infor">
+							<h6><a href="moviesingle_light.php?film_id=<?php echo $row['id'] ?>"><?php echo $row["name"] ?>  <span>(<?php echo explode(".",$row["tarih"])[2] ?>)</span></a></h6>
+							<p class="time sm-text">Senin puanın:</p><br>
+							<p class="rate"><i class="ion-android-star"></i><span><?php echo $row["yorum_puan"] ?></span> /10</p>
+							<p class="time sm-text">Yorumun:</p><br>
+							<h6><?php echo $row["baslik_yorum"] ?></h6>
+							<?php 
+							$originalDate = $row["tarih"];
+							$date = new DateTime($originalDate);?>
+							<p class="time sm"><?php echo $date->format('M, d / Y'); ?></p>
+							<p><?php echo $row["yorum"] ?></p>
 						</div>
-						<div class="row">
-							<div class="col-md-6 form-it">
-								<label>Ad</label>
-								<input type="text" id="profil_name" value="<?php echo $user["name"] ?> ">
-							</div>
-							<div class="col-md-6 form-it">
-								<label>Soyad</label>
-								<input type="text" id="profil_lastname" value="<?php echo $user["lastname"] ?>">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-2">
-								<input class="submit" id="profil_güncelle" type="submit"  value="Kaydet">
-							</div>
-						</div>	
-					</form>
-					<form action="#" class="password">
-						<h4>02. Şifre Değiştir</h4>
-						<div class="row">
-							<div class="col-md-6 form-it">
-								<label>Eski Şifre</label>
-								<input type="text" placeholder="**********">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 form-it">
-								<label>Yeni Şifre</label>
-								<input type="text" placeholder="***************">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 form-it">
-								<label>Yeni Şifre Tekrar</label>
-								<input type="text" placeholder="*************** ">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-2">
-								<input class="submit" type="submit" value="Değiştir">
-							</div>
-						</div>	
-					</form>
-				</div>
+					</div>
+				<?php	} ?>
+
 			</div>
 		</div>
 	</div>
@@ -232,44 +199,7 @@
 <script src="js/plugins.js"></script>
 <script src="js/plugins2.js"></script>
 <script src="js/custom.js"></script>
-<script src="js/main.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </body>
-<script>
 
-$("#profil_güncelle").click(function(){
-    var username = $("#profil_username").val();
-    var profil_mail = $("#profil_mail").val();
-    var profil_mail_old = $("#profil_mail_old").val();
-    var profil_name = $("#profil_name").val();
-    var profil_lastname = $("#profil_lastname").val();
-
-    $.ajax({
-        type: "POST",
-        url: "profil_update.php",
-        data : {username:username,profil_mail:profil_mail,profil_name:profil_name,profil_lastname:profil_lastname,profil_mail_old:profil_mail_old},
-        success: function(data)
-        {
-            if(data == "OK"){
-                 Swal.fire({
-                     icon: 'success',
-                     title: 'Güncellendi',
-                     showConfirmButton: false,
-                     timer: 1500
-                     })
-                     location.reload();
-            }else{
-                 Swal.fire({
-                     icon: 'error',
-                     title: 'Oops...',
-                     text: data,
-                 })
-            }
-        }
-      });
-     return false;
-
-})
-</script>
-<!-- userprofile_light16:31-->
+<!-- userrate_light16:31-->
 </html>

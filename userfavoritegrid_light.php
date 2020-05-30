@@ -102,16 +102,6 @@
 				</div>
 			</div>
 			<div class="col-md-9 col-sm-12 col-xs-12">
-				<div class="topbar-filter user">
-					<p>Found <span>1,608 movies</span> in total</p>
-					<label>Sort by:</label>
-					<select>
-						<option value="range">-- Choose option --</option>
-						<option value="saab">-- Choose option 2--</option>
-					</select>
-					<a href="userfavoritelist.html" class="list"><i class="ion-ios-list-outline "></i></a>
-					<a  href="userfavoritegrid.html" class="grid"><i class="ion-grid active"></i></a>
-				</div>
 				<div class="flex-wrap-movielist grid-fav">
 						<?php
 							$getFilmsId = $conn->query("SELECT film_id FROM favori_filmler WHERE username='".$_SESSION['username']."'");

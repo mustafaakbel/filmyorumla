@@ -6,7 +6,7 @@ $yorum_puan = $_POST['yorum_puan'];
 $yorum = $_POST['yorum']; 
 $user_name = $_SESSION["username"];
 $film_id = $_POST['film_id'];
-$tarih = date("d.m.y");
+$tarih = date("d.m.Y");
 $sql = "INSERT INTO comments(username, film_id, yorum_puan,baslik_yorum, yorum,tarih )
             VALUES ('$user_name', '$film_id', '$yorum_puan', '$baslik_yorum', '$yorum','$tarih')";
 

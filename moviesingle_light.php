@@ -77,7 +77,7 @@
 		<div class="row ipad-width2">
 			<div class="col-md-4 col-sm-12 col-xs-12">
 				<div class="movie-img sticky-sb">
-					<img src="images/uploads/movie-single.jpg" alt="">
+					<img src="<?php echo $film["gorsel"] ?>" alt="">
 					<div class="movie-btn">	
 						<div class="btn-transform transform-vertical red">
 							<div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Trailer İzle</a></div>
@@ -236,40 +236,16 @@
 						            			<h6>Süresi:</h6>
 						            			<p><?php echo $film["zaman"] ?> dakika</p>
 						            		</div>
-						            		<div class="sb-it">
-						            			<h6>Anahtar Kelimeler:</h6>
-						            			<p class="tags">
-													<?php
-													$kelimeler = explode(",",$film["anahtar_kelime"]);
-													foreach ($kelimeler as $key => $value) { ?> 
-														<span class="time"><a href="#"><?php echo $value ?></a></span> 
-													<?php
-													}
-													?>
-						            			</p>
-						            		</div>
 						            	</div>
 						            </div>
 						        </div>
 						        <div id="reviews" class="tab review">
-						           <div class="row">
+						           <div class="row"><br>
 						            	<div class="rv-hd">
 						            		<div class="div">
-						       	 				<h2>Skyfall: Quantum of Spectre</h2>
+						       	 				<h2><?php echo $film["name"] ?></h2>
 							            	</div>
 						            	</div>
-						            	<div class="topbar-filter">
-											<p>Found <span>56 reviews</span> in total</p>
-											<label>Filter by:</label>
-											<select>
-												<option value="popularity">Popularity Descending</option>
-												<option value="popularity">Popularity Ascending</option>
-												<option value="rating">Rating Descending</option>
-												<option value="rating">Rating Ascending</option>
-												<option value="date">Release date Descending</option>
-												<option value="date">Release date Ascending</option>
-											</select>
-										</div>
 										<?php 
 											$getComment  =  $conn->query("SELECT * FROM comments WHERE  film_id='".$film_id."'");
 											while ($row = mysqli_fetch_assoc($getComment)) { ?>
