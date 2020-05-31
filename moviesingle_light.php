@@ -319,7 +319,7 @@
 		<div class="flex-parent-ft">
 			<div class="flex-child-ft item1">
 				 <a href="index-2.html"><img class="logo" src="images/logo1.png" alt=""></a>
-				 <p>tryning Avenue st, manhattan<br>
+				 <p>5th Avenue st, manhattan.<br>
 				New York, NY 10001</p>
 				<p>Call us: <a href="#">(+01) 202 342 6789</a></p>
 			</div>
