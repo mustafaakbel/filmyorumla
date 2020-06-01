@@ -24,13 +24,12 @@
 							filmler<i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="moviegrid_light.html">Tüm Filmler</a></li>
+								<li><a href="moviegrid_light.php">Tüm Filmler</a></li>
 							</ul>
 						</li>
 					</ul>
 					<?php if(@$_SESSION["oturum"] !== TRUE){?>
 					<ul class="nav navbar-nav flex-child-menu menu-right">
-						<li class="loginTest"><a href="#" onclick="alertFunc()">Test</a></li>
 						<li class="loginLink"><a href="#">Giriş</a></li>
 						<li class="btn signupLink"><a href="#">Kayıt Ol</a></li>
 					</ul>
