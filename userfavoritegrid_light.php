@@ -5,6 +5,8 @@
 	if(empty($_SESSION["username"])){
 		header("Location: index.php");
 	}
+	$getUser = $conn->query("SELECT * FROM users WHERE  username='".$_SESSION['username']."'");
+	$user = mysqli_fetch_assoc($getUser);
 ?>
 <!--[if IE 7]>
 <html class="ie ie7 no-js" lang="en-US">
@@ -89,7 +91,11 @@
 						<ul>
 							<li ><a href="userprofile_light.php?username=<?php echo $_SESSION['username'] ?>">Profil</a></li>
 							<li  class="active"><a href="userfavoritegrid_light.php?username=<?php echo $_SESSION['username'] ?>">Favori Filmler</a></li>
-							<li><a href="userrate.html">Yorumladığı Filmler</a></li>
+							<li><a href="userrate_light.php?username=<?php echo $_SESSION['username'] ?>">Yorumladığı Filmler</a></li>
+							<?php if($user["moderator"]){?>
+								<li><a href="addfilm.php">Film Ekle</a></li>
+							<?php
+							} ?>
 						</ul>
 					</div>
 					<div class="user-fav">

@@ -87,7 +87,7 @@
 					<div class="user-fav">
 						<p>Kullanıcı Detayları</p>
 						<ul>
-							<li ><a href="userprofile.html">Profil</a></li>
+							<li ><a href="userprofile_light.php?username=<?php echo $_SESSION['username'] ?>">Profil</a></li>
 							<li><a href="userfavoritegrid_light.php?username=<?php echo $_SESSION['username'] ?>">Favori Filmler</a></li>
 							<li  class="active"><a href="userrate_light.php">Yorumladığı Filmler</a></li>
 							<?php if($user["moderator"]){?>

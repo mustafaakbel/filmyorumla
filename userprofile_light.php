@@ -86,7 +86,7 @@
 						<a href="#" class="redbtn">Change avatar</a>
 					</div>
 					<div class="user-fav">
-						<p>Kullanıcı Detayları</p>
+						<p style="color:black;">Kullanıcı Detayları</p>
 						<ul>
 							<li  class="active"><a href="userprofile.html">Profil</a></li>
 							<li><a href="userfavoritegrid_light.php?username=<?php echo $_SESSION['username'] ?>">Favori Filmler</a></li>
