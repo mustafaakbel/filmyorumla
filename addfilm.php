@@ -93,14 +93,14 @@
 						<ul>
 							<li ><a href="userprofile_light.php?username=<?php echo $_SESSION['username'] ?>">Profil</a></li>
 							<li><a href="userfavoritegrid_light.php?username=<?php echo $_SESSION['username'] ?>">Favori Filmler</a></li>
-							<li><a href="userrate_light.php?username=<?php echo $_SESSION['username'] ?>">Yorumladığı Filmler</a></li>
+							<li><a href="userrate_light.php?username=<?php echo $_SESSION['username'] ?>">Yorumladığın Filmler</a></li>
 							<li  class="active"><a href="addfilm.php">Film Ekle</a></li>
 						</ul>
 					</div>
 					<div class="user-fav">
 						<p>Diğer</p>
 						<ul>
-							<li><a href="#">Şifre Değiştir</a></li>
+							<li><a href="userprofile_light.php?username=<?php echo $_SESSION['username'] ?>">Şifre Değiştir</a></li>
 							<li onclick="cikisYap()"><a href="#">Çıkış Yap</a></li>
 						</ul>
 					</div>

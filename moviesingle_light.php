@@ -184,7 +184,7 @@
 											while ($row = mysqli_fetch_assoc($getComment)) { ?>
 											<div class="mv-user-review-item">
 												<div class="user-infor">
-													<img src="images/uploads/userava1.jpg" alt="">
+													<img src="images/uploads/author4.png" alt="">
 													<div>
 														<h3><?php echo $row["baslik_yorum"] ?></h3>
 														<div class="no-star">
@@ -211,30 +211,34 @@
 												<p> <?php echo $row["yorum"] ?></p>
 											</div>
 										<?php	} ?>
-										<div class="col-md-9 col-sm-12 col-xs-12">
-											<div class="blog-detail-ct">
-												<div class="comment-form">
-													<h4>Yorum bırak</h4>
-													<form action="#">
-														<div class="row">
-															<div class="col-md-8">
-																<input type="text" id="baslik_yorum" placeholder="Başlık">
-															</div>
-															<div class="col-md-4">
-																<input type="number" id="yorum_puan" max="10" min="0" placeholder="Puan">
-															</div>
+											<?php if(!empty($_SESSION["username"])){?>
+
+												<div class="col-md-9 col-sm-12 col-xs-12">
+													<div class="blog-detail-ct">
+														<div class="comment-form">
+															<h4>Yorum bırak</h4>
+															<form action="#">
+																<div class="row">
+																	<div class="col-md-8">
+																		<input type="text" id="baslik_yorum" placeholder="Başlık">
+																	</div>
+																	<div class="col-md-4">
+																		<input type="number" id="yorum_puan" max="10" min="0" placeholder="Puan">
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="col-md-12">
+																		<textarea name="message" id="yorum" placeholder="Yorum"></textarea>
+																		<input type="hidden" id="film_id" value="<?php echo $_GET["film_id"] ?>">
+																	</div>
+																</div>
+																<input class="submit" id="yorum_yap" type="submit" placeholder="submit">
+															</form>
 														</div>
-														<div class="row">
-															<div class="col-md-12">
-																<textarea name="message" id="yorum" placeholder="Yorum"></textarea>
-																<input type="hidden" id="film_id" value="<?php echo $_GET["film_id"] ?>">
-															</div>
-														</div>
-														<input class="submit" id="yorum_yap" type="submit" placeholder="submit">
-													</form>
+													</div>
 												</div>
-											</div>
-										</div>
+											<?php 
+											} ?>
 						            </div>
 						        </div>
 						    </div>

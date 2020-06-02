@@ -90,7 +90,7 @@
 						<ul>
 							<li  class="active"><a href="userprofile.html">Profil</a></li>
 							<li><a href="userfavoritegrid_light.php?username=<?php echo $_SESSION['username'] ?>">Favori Filmler</a></li>
-							<li><a href="userrate_light.php?username=<?php echo $_SESSION['username'] ?>">Yorumladığı Filmler</a></li>
+							<li><a href="userrate_light.php?username=<?php echo $_SESSION['username'] ?>">Yorumladığın Filmler</a></li>
 							<?php if($user["moderator"]){?>
 								<li><a href="addfilm.php">Film Ekle</a></li>
 							<?php

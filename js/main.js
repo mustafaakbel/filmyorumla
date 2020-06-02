@@ -34,8 +34,7 @@ $("#yorum_yap").click(function(){
                     showConfirmButton: false,
                     timer: 1500
                     })
-                    location.href = "moviesingle_light.php?film_id="+film_id+"#reviews";
-                    $(".tabs").tabs({ active: 2 });
+                    location.reload()
            }else{
                 Swal.fire({
                     icon: 'error',
