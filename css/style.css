@@ -6510,7 +6510,7 @@ ul {
 .user-pro h4 {
   font-family: 'Dosis', sans-serif;
   font-size: 14px;
-  color: #ffffff;
+  color: #dd003f;
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 30px;
@@ -7408,7 +7408,7 @@ p.ceb-single {
   transform: rotateX(0deg);
 }
 .buster-light p {
-  color: #233a50;
+  color: #abb7c4;
 }
 .buster-light .movie-items,
 .buster-light .latestnew {

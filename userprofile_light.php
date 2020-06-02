@@ -83,7 +83,7 @@
 				<div class="user-information">
 					<div class="user-img">
 						<a href="#"><img src="images/uploads/user-img.png" alt=""><br></a>
-						<a href="#" class="redbtn">Change avatar</a>
+						<a href="#" class="redbtn">Avatar Değiştir</a>
 					</div>
 					<div class="user-fav">
 						<p style="color:black;">Kullanıcı Detayları</p>
@@ -142,24 +142,24 @@
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>Eski Şifre</label>
-								<input type="text" placeholder="**********">
+								<input type="password" id="old_pass" placeholder="**********">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>Yeni Şifre</label>
-								<input type="text" placeholder="***************">
+								<input type="password" id="new_pass" placeholder="***************">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>Yeni Şifre Tekrar</label>
-								<input type="text" placeholder="*************** ">
+								<input type="password" id="new_pass_re" placeholder="*************** ">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-2">
-								<input class="submit" type="submit" value="Değiştir">
+								<input class="submit" id="password_change" type="submit" value="Değiştir">
 							</div>
 						</div>	
 					</form>
@@ -181,6 +181,47 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </body>
 <script>
+$("#password_change").click(function(){
+    var username = $("#profil_username").val();
+	var old_pass = $("#old_pass").val();
+    var new_pass = $("#new_pass").val();
+	var new_pass_re = $("#new_pass_re").val();
+	if(new_pass != new_pass_re){
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: "Şifreler eşleşmiyor",
+		})
+		return false;
+	}
+
+	$.ajax({
+        type: "POST",
+        url: "pass_change.php",
+        data : {username:username,old_pass:old_pass,new_pass:new_pass,new_pass_re:new_pass_re},
+        success: function(data)
+        {
+            if(data == "OK"){
+                 Swal.fire({
+                     icon: 'success',
+                     title: 'Güncellendi',
+                     showConfirmButton: false,
+                     timer: 1500
+                     })
+                     location.reload();
+            }else{
+                 Swal.fire({
+                     icon: 'error',
+                     title: 'Oops...',
+                     text: data,
+                 })
+            }
+        }
+      });
+	  return false;
+
+});
+
 
 $("#profil_güncelle").click(function(){
     var username = $("#profil_username").val();

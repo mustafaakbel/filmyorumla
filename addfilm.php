@@ -86,7 +86,7 @@
 				<div class="user-information">
 					<div class="user-img">
 						<a href="#"><img src="images/uploads/user-img.png" alt=""><br></a>
-						<a href="#" class="redbtn">Change avatar</a>
+						<a href="#" class="redbtn">Avatar Değiştir</a>
 					</div>
 					<div class="user-fav">
 						<p>Kullanıcı Detayları</p>
