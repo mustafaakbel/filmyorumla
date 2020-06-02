@@ -20,7 +20,6 @@ if ($conn->query($sql) === TRUE) {
     SET puan='".$rank."'
     WHERE id='".$film_id."' ";
     $conn->query($sqlRank);
-
     echo "OK";
 } else {
     echo "Yorum Yapılamadı";

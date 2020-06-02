@@ -81,7 +81,7 @@
 					<div class="movie-btn">	
 						<div class="btn-transform transform-vertical red">
 							<div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Trailer İzle</a></div>
-							<div><a href="https://www.youtube.com/embed/o-0hcF97wy0" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
+							<div><a href="<?php echo $film["ytlink"] ?>" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
 						</div>
 					</div>
 				</div>
@@ -90,17 +90,20 @@
 				<div class="movie-single-ct main-content">
 					<h1 class="bd-hd"><?php echo $film["name"] ?> <span><?php echo explode(".",$film["cikis_tarih"])[2] ?></span></h1>
 					<?php 
-						$favCheck = $conn->query("SELECT * FROM favori_filmler WHERE film_id='".$film_id."' && username='".$_SESSION['username']."' ");
+						$favCheck = @$conn->query("SELECT * FROM favori_filmler WHERE film_id='".$film_id."' && username='".$_SESSION['username']."' ");
 					?>
 					<div class="social-btn" >
-						<a  href="#" onclick="fav(<?php if(mysqli_num_rows($favCheck) > 0){echo '1'; }else{ echo '0'; }  ?>)" class="parent-btn"><i class="ion-heart"></i>
+						<?php if(!empty($_SESSION["username"])){?>
+							<a  href="#" onclick="fav(<?php if(mysqli_num_rows($favCheck) > 0){echo '1'; }else{ echo '0'; }  ?>)" class="parent-btn"><i class="ion-heart"></i>
+							<?php
+							if(mysqli_num_rows($favCheck) > 0){
+								echo "Favorilerden Çıkar";
+							}else{
+								echo "Favorilere Ekle";
+							}
+							?></a>	
 						<?php
-						if(mysqli_num_rows($favCheck) > 0){
-							echo "Favorilerden Çıkar";
-						}else{
-							echo "Favorilere Ekle";
-						}
-						?></a>	
+						} ?>
 					</div>
 					<div class="movie-rate">
 						<div class="rate">
@@ -139,73 +142,9 @@
 						    <div class="tab-content">
 						        <div id="overview" class="tab active">
 						            <div class="row">
-						            	<div class="col-md-8 col-sm-12 col-xs-12">
+						            	<div class="col-md-8 col-sm-12 col-xs-12" style="margin-top:60px">
 						            		<p><?php echo $film["aciklama"] ?></p>
 						            		
-											<div class="title-hd-sm">
-												<h4>cast</h4>
-												<a href="#" class="time">Full Cast & Crew  <i class="ion-ios-arrow-right"></i></a>
-											</div>
-											<!-- movie cast -->
-											<div class="mvcast-item">											
-												<div class="cast-it">
-													<div class="cast-left">
-														<img src="images/uploads/cast1.jpg" alt="">
-														<a href="#">Robert Downey Jr.</a>
-													</div>
-													<p>...  Robert Downey Jr.</p>
-												</div>
-												<div class="cast-it">
-													<div class="cast-left">
-														<img src="images/uploads/cast2.jpg" alt="">
-														<a href="#">Chris Hemsworth</a>
-													</div>
-													<p>...  Thor</p>
-												</div>
-												<div class="cast-it">
-													<div class="cast-left">
-														<img src="images/uploads/cast3.jpg" alt="">
-														<a href="#">Mark Ruffalo</a>
-													</div>
-													<p>...  Bruce Banner/ Hulk</p>
-												</div>
-												<div class="cast-it">
-													<div class="cast-left">
-														<img src="images/uploads/cast4.jpg" alt="">
-														<a href="#">Chris Evans</a>
-													</div>
-													<p>...  Steve Rogers/ Captain America</p>
-												</div>
-												<div class="cast-it">
-													<div class="cast-left">
-														<img src="images/uploads/cast5.jpg" alt="">
-														<a href="#">Scarlett Johansson</a>
-													</div>
-													<p>...  Natasha Romanoff/ Black Widow</p>
-												</div>
-												<div class="cast-it">
-													<div class="cast-left">
-														<img src="images/uploads/cast6.jpg" alt="">
-														<a href="#">Jeremy Renner</a>
-													</div>
-													<p>...  Clint Barton/ Hawkeye</p>
-												</div>
-												<div class="cast-it">
-													<div class="cast-left">
-														<img src="images/uploads/cast7.jpg" alt="">
-														<a href="#">James Spader</a>
-													</div>
-													<p>...  Ultron</p>
-												</div>
-												<div class="cast-it">
-													<div class="cast-left">
-														<img src="images/uploads/cast9.jpg" alt="">
-														<a href="#">Don Cheadle</a>
-													</div>
-													<p>...  James Rhodes/ War Machine</p>
-												</div>
-											</div>
-
 						            	</div>
 						            	<div class="col-md-4 col-xs-12 col-sm-12">
 						            		<div class="sb-it">
@@ -213,16 +152,10 @@
 						            			<p><a href="#"><?php echo $film["yonetmen"] ?></a></p>
 						            		</div>
 						            		<div class="sb-it">
-						            			<h6>Senarist: </h6>
-						            			<p><a href="#">Joss Whedon,</a> <a href="#">Stan Lee</a></p>
-						            		</div>
-						            		<div class="sb-it">
-						            			<h6>Yıldızlar: </h6>
-						            			<p><a href="#">Robert Downey Jr,</a> <a href="#">Chris Evans,</a> <a href="#">Mark Ruffalo,</a><a href="#"> Scarlett Johansson</a></p>
-						            		</div>
-						            		<div class="sb-it">
 						            			<h6>Kategori:</h6>
-						            			<p><a href="#">Action, </a> <a href="#"> Sci-Fi,</a> <a href="#">Adventure</a></p>
+												<p><a href="#"><?php 
+												$kategori = $conn->query("SELECT * FROM kategori WHERE id='".$film['kategori']."'");
+												$kat = mysqli_fetch_assoc($kategori); echo $kat["kategori"] ?>  </a></p>
 						            		</div>
 						            		<div class="sb-it">
 						            			<h6>Çıkış Tarihi:</h6>
@@ -314,62 +247,7 @@
 </div>
 		</div>
 <!-- footer section-->
-<footer class="ht-footer">
-	<div class="container">
-		<div class="flex-parent-ft">
-			<div class="flex-child-ft item1">
-				 <a href="index-2.html"><img class="logo" src="images/logo1.png" alt=""></a>
-				 <p>5th Avenue st, manhattan.<br>
-				New York, NY 10001</p>
-				<p>Call us: <a href="#">(+01) 202 342 6789</a></p>
-			</div>
-			<div class="flex-child-ft item2">
-				<h4>Resources</h4>
-				<ul>
-					<li><a href="#">About</a></li> 
-					<li><a href="#">Blockbuster</a></li>
-					<li><a href="#">Contact Us</a></li>
-					<li><a href="#">Forums</a></li>
-					<li><a href="#">Blog</a></li>
-					<li><a href="#">Help Center</a></li>
-				</ul>
-			</div>
-			<div class="flex-child-ft item3">
-				<h4>Legal</h4>
-				<ul>
-					<li><a href="#">Terms of Use</a></li> 
-					<li><a href="#">Privacy Policy</a></li>	
-					<li><a href="#">Security</a></li>
-				</ul>
-			</div>
-			<div class="flex-child-ft item4">
-				<h4>Account</h4>
-				<ul>
-					<li><a href="#">My Account</a></li> 
-					<li><a href="#">Watchlist</a></li>	
-					<li><a href="#">Collections</a></li>
-					<li><a href="#">User Guide</a></li>
-				</ul>
-			</div>
-			<div class="flex-child-ft item5">
-				<h4>Newsletter</h4>
-				<p>Subscribe to our newsletter system now <br> to get latest news from us.</p>
-				<form action="#">
-					<input type="text" placeholder="Enter your email...">
-				</form>
-				<a href="#" class="btn">Subscribe now <i class="ion-ios-arrow-forward"></i></a>
-			</div>
-		</div>
-	</div>
-	<div class="ft-copyright">
-		<div class="ft-left">
-			<p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
-		</div>
-		<div class="backtotop">
-			<p><a href="#" id="back-to-top">Back to top  <i class="ion-ios-arrow-thin-up"></i></a></p>
-		</div>
-	</div>
-</footer>
+<?php include("inc/footer.php"); ?>
 <!-- end of footer section-->
 
 <script src="js/jquery.js"></script>

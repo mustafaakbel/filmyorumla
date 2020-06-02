@@ -72,8 +72,11 @@
 								<div class="cate">
 									<?php
 									$kelimeler = explode(",",$row["kategori"]);
-									foreach ($kelimeler as $key => $value) { ?> 
-											<span class="blue"><a href="#"><?php echo $value ?></a></span>
+									foreach ($kelimeler as $key => $value) { 
+										$kategori = $conn->query("SELECT * FROM kategori WHERE id='".$value."'");
+										$kat = mysqli_fetch_assoc($kategori)?>
+
+											<span class="blue"><a href="#"><?php echo $kat["kategori"] ?></a></span>
 									<?php
 									}
 									?>
@@ -103,7 +106,7 @@
 			            <div class="row">
 			            	<div class="slick-multiItem2">
 								<?php
-									$getFilms = $conn->query("SELECT * FROM film");
+									$getFilms = $conn->query("SELECT * FROM film ORDER BY puan DESC");
 									while ($row = mysqli_fetch_assoc($getFilms)) {   ?>
 			            				<div class="slide-it">
 											<div class="movie-item">

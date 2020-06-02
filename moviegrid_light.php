@@ -84,7 +84,7 @@
 			<div class="col-md-8 col-sm-12 col-xs-12">
 				<div class="flex-wrap-movielist">
 				<?php
-					$getFilmsIMDB = $conn->query("SELECT * FROM film  ORDER BY imdb_puan DESC limit 8");
+					$getFilmsIMDB = $conn->query("SELECT * FROM film");
 					while ($row = mysqli_fetch_assoc($getFilmsIMDB)) {   ?>
 						<div class="movie-item-style-2 movie-item-style-1">
 							<img src="<?php echo $row["gorsel"]; ?>" alt="">	
@@ -108,7 +108,7 @@
 							<div class="row">
 								<div class="col-md-12 form-it">
 									<label>Film Adı</label>
-									<input type="text" placeholder="Enter keywords">
+									<input type="text" placeholder="Film Adı">
 								</div>
 								<div class="col-md-12 form-it">
 									<label>Türler ve Alt Türler</label>
@@ -116,46 +116,21 @@
 										<select
 											name="skills" multiple="" class="ui fluid dropdown">
 											<option value="">Türleri filtrelemek için girin</option>
-											<option value="Action1">Action 1</option>
-					                        <option value="Action2">Action 2</option>
-					                        <option value="Action3">Action 3</option>
-					                        <option value="Action4">Action 4</option>
-					                        <option value="Action5">Action 5</option>
+											<?php
+												$allKategori = $conn->query("SELECT * FROM Kategori");
+												while ($row = mysqli_fetch_array($allKategori)) {?>
+													<option value="<?php echo $row["id"] ?>"><?php echo $row["kategori"] ?></option>
+											<?php		
+												}
+											?>
 										</select>
 									</div>	
-								</div>
-								<div class="col-md-12 form-it">
-									<label>Reyting Aralığı</label>
-									<select>
-									  <option value="range">-- Reyting Aralığı Seç --</option>
-									  <option value="saab">-- Reyting Aralığı Seç --</option>
-									</select>
-								</div>
-								<div class="col-md-12 form-it">
-									<label>Çıkış tarihi</label>
-									<div class="row">
-										<div class="col-md-6">
-											<select>
-											  <option value="range">10</option>
-											  <option value="number">dan</option>
-											</select>
-										</div>
-										<div class="col-md-6">
-											<select>
-											  <option value="range">20</option>
-											  <option value="number">ye</option>
-											</select>
-										</div>
-									</div>
 								</div>
 								<div class="col-md-12 ">
 									<input class="submit" type="submit" value="submit">
 								</div>
 							</div>
 						</form>
-					</div>
-					<div class="ads">
-						<img src="images/uploads/ads1.png" alt="">
 					</div>
 				</div>
 			</div>
